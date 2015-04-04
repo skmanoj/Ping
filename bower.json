@@ -1,0 +1,26 @@
+{
+  "name": "Ping",
+  "version": "1.0.0",
+  "homepage": "https://github.com/skmanoj/Ping",
+  "authors": [
+    "Manoj sk <skmanoj1988@gmail.com>"
+  ],
+  "description": "Ping chat server",
+  "keywords": [
+    "Chat"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3",
+    "angular": "~1.2",
+    "angular-resource": "~1.2",
+    "angular-mocks": "~1.2",
+    "angular-cookies": "~1.2",
+    "angular-animate": "~1.2",
+    "angular-touch": "~1.2",
+    "angular-sanitize": "~1.2",
+    "angular-bootstrap": "~0.11.2",
+    "angular-ui-utils": "~0.1.1",
+    "angular-ui-router": "~0.2.11"
+  }
+}
