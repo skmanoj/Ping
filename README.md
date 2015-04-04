@@ -11,7 +11,7 @@ Ping uses a number of open source projects to work properly:
 * [bower] - package manager for the web
 * [AngularJS] - HTML enhanced for web apps!
 * [Twitter Bootstrap] - great UI boilerplate for modern web apps
-* [Express] - fast node.js network app framework [@tjholowaychuk]
+* [Express] - fast node.js network app framework
 * [Nodemon] - Monitor for any changes in your node.js application and automatically restart the server - perfect for development
 * [Gravatar] - Globally recognized avatar.
 
