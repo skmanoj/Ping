@@ -13,9 +13,23 @@ module.exports = function(app, io) {
 		res.redirect('/chat/'+id);
 	});
 
-	app.get('/chat/:id', function(req,res){
 
-		// Render the chant.html view
-		//res.sendFile(__dirname + '/client/views/chat.html');
+	//error handling
+	app.use(function(err, req, res, next) {
+		// If the error object doesn't exists
+		if (!err) return next();
+
+		// Log it
+		console.error(err.stack);
+
+		// Error page
+		res.status(500).sendFile(__dirname + '/client/views/errors.html');
+
+	});
+
+	// Assume 404 since no middleware responded
+	app.use(function(req, res) {
+		res.status(404).sendFile(__dirname + '/client/views/errors.html');
+
 	});
 }
