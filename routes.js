@@ -1,3 +1,5 @@
+var serverio = require('./serverio');
+
 module.exports = function(app, io) {
 
 	app.get('/', function(req, res) {
@@ -13,8 +15,16 @@ module.exports = function(app, io) {
 		res.redirect('/chat/'+id);
 	});
 
+	app.get('/chat/:id', function(req,res){
 
-	//error handling
+	});
+
+	serverio(io);
+
+	/*
+	 * error handling
+	 *
+	*/
 	app.use(function(err, req, res, next) {
 		// If the error object doesn't exists
 		if (!err) return next();
