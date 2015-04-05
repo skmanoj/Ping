@@ -1,0 +1,88 @@
+<!Doctype html>
+
+<html ng-app="chatApp">
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Chatroom...</title>
+		<link href="/css/bootstrap.min.css" rel="stylesheet"></link>
+		<link href="/localcss/chat.css" rel="stylesheet"></link>
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans Condensed:300italic,300,700" rel="stylesheet" type="text/css">
+	</head>
+	<body ng-controller="BasicChatController">
+		<header class="banner">
+		</header>
+
+		<section class="section">
+			<div ng-show = "connectScreen" class="connected">
+				<img src="/img/unnamed.jpg" id="creatorImage" />
+				<div class="infoConnected">
+					<h2>Who are you?</h2>
+					<br/>
+
+					<form class="loginForm">
+						<input type="text" id="yourName" placeholder="Your nick name" ng-model="name"/><br/>
+						<h5 ng-show="validName()">*invalid username</h5><br/>
+						<input type="text" id="yourEmail" placeholder="Your email address" ng-model="email"/><br/>
+						<h5 ng-show="validEmail()">*invalid email</h5><br/>
+						<input type="submit" id="yourEnter" value="ENTER" ng-click="update()"/>
+					</form>
+				</div>
+			</div>
+
+			<!-- invitation screen -->
+			<div ng-show="inviteScreen" class="invite-textfield">
+
+				<h2>Oops, there are no other people in this chat!</h2>
+				<h5>Invite a friend by sending them this URL</h5>
+
+				<div class="link">
+					<a title="Invite a friend" href="" id="link">{{link}}</a>
+				</div>
+			</div>
+
+			<!-- chat screen for second person -->
+			<div ng-show="personInside" class="personinside">
+				<img src="/img/unnamed.jpg" id="ownerImage" />
+				<div class="infoInside">
+					<h2>Chat with {{firstUser}}</h2>
+					<br/>
+
+					<form class="loginForm">
+						<input type="text" id="hisName" placeholder="Your nick name" ng-model="name"/><br/>
+						<h5 ng-show="validName()">*invalid username</h5><br/>
+						<input type="text" id="hisEmail" placeholder="Your email address" ng-model="email"/><br/>
+						<h5 ng-show="validEmail()">*invalid email</h5><br/>
+						<input type="submit" id="hisEnter" value="CHAT" ng-click="updateUser()"/>
+					</form>
+				</div>
+			</div>
+
+			<!-- Too many people -->
+			<div ng-show="tooManyPeople" class="toomanypeople">
+
+				<h2>Oops, you can not join this chat!</h2>
+				<h5>There are already two people in it. Would you like to create a <a title="New Room" href="/create" id="room">new room</a>?</h5>
+
+			</div>
+
+			<!--User left -->
+
+			<div ng-show="leftUserWindow" class="left">
+				<img src="/img/unnamed.jpg" id="leftImage" />
+				<div class="info">
+					<h2> {{leftUser}} has left this chat.</h2>
+					<h5>Invite somebody else by sending them this page.</h5>
+				</div>
+			</div>
+
+		</section>
+		
+		<script type="text/javascript" src="/jqueryjs/jquery.js"></script>
+		<script type="text/javascript" src="/bootstrapjs/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/localjs/chat.js"></script>
+	</body>
+</html>

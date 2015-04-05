@@ -10,6 +10,7 @@ module.exports = function(io) {
 		socket.on('load',function(data){
 
 			var room = findClientsSocket(io,data);
+			console.log('room size: ', room.length);
 			if(room.length === 0 ) {
 
 				socket.emit('peopleinchat', {number: 0});
@@ -107,12 +108,14 @@ module.exports = function(io) {
 
 function findClientsSocket(io,roomId, namespace) {
 	var res = [],
-		ns = io.of(namespace ||"/");    // the default namespace is "/"
-
+		ns = io.of(namespace ||"/");    // the default namespace is "/"	
 	if (ns) {
+
 		for (var id in ns.connected) {
+			console.log('connected rooms: ',roomId, ns.connected[id].rooms);
 			if(roomId) {
 				var index = ns.connected[id].rooms.indexOf(roomId) ;
+				console.log(index);
 				if(index !== -1) {
 					res.push(ns.connected[id]);
 				}

@@ -16,7 +16,7 @@ module.exports = function(app, io) {
 	});
 
 	app.get('/chat/:id', function(req,res){
-
+		res.sendFile(__dirname + '/client/views/chat.html');
 	});
 
 	serverio(io);
