@@ -77,7 +77,31 @@
 				</div>
 			</div>
 
+			<!-- No messages yet -->
+			<div ng-show="noMsgWindow" class="nomessages">
+				<img src="/img/unnamed.jpg" id="noMessagesImage" />
+				<div class="info">
+					<h2>You are chatting with {{otherPerson}}.</h2>
+					<h5>Send them a message from the form below!</h5>
+				</div>
+
+			</div>
+
+			<!-- chat screen -->
+			<div ng-show="chatScreenWindow" class="chatscreen">
+				<ul class="chats">
+					<!-- The chat messages will go here -->
+				</ul>
+			</div>
 		</section>
+
+		<!-- chat enter box -->
+		<footer ng-show="enterMsgWindow">
+			<form id="chatform">
+				<textarea id="message" placeholder="Write something.." ng-model="lovelyChat"></textarea>
+				<input type="submit" id="submit" value="SEND" ng-click="sendLovelyChat()"/>
+			</form>
+		</footer>
 		
 		<script type="text/javascript" src="/jqueryjs/jquery.js"></script>
 		<script type="text/javascript" src="/bootstrapjs/bootstrap.min.js"></script>

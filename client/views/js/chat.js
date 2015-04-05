@@ -39,10 +39,15 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', fu
 	$scope.personInside = false;
 	$scope.tooManyPeople = false;
 	$scope.leftUserWindow = false;
+	$scope.noMsgWindow = false;
+	$scope.chatScreenWindow = false;
+	$scope.enterMsgWindow = false;
 	$scope.link = $location.absUrl();
 
 	$scope.name = '';
 	$scope.email = '';
+	$scope.lovelyChat = '';
+	var img = '';
 	$scope.validName = function() {
 		return (!($scope.name.length > 1));
 	}
@@ -51,7 +56,15 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', fu
 		return !(isValid($scope.email));
 	}
 
-
+	$scope.sendLovelyChat = function() {
+		if($scope.lovelyChat.length >= 1) {
+			// Send the message to the other person in the chat
+			$scope.chatScreenWindow = true;
+			$scope.noMsgWindow = false;
+			socketio.emit('msg', {msg: $scope.lovelyChat, user: $scope.name, img: img});
+		} 
+		$scope.lovelyChat = '';
+	}
 
 	var url = $scope.link.split("/");
 	var id = url[url.length - 1];
@@ -87,7 +100,7 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', fu
 
 			$scope.updateUser = function() {
 				if(!($scope.validName()) && !($scope.validEmail())) {
-					socketio.emit('login', {user: name, avatar: email, id: id});
+					socketio.emit('login', {user: $scope.name, avatar: $scope.email, id: id});
 					$scope.personInside = false;
 				}
 			}
@@ -106,11 +119,39 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', fu
 
 	socketio.on('leave',function(data){
 		if(data.boolean && id==data.room){
+			$scope.enterMsgWindow = false;
+			$scope.noMsgWindow = false;
+			$scope.chatScreenWindow = false;
 			$scope.leftUserWindow = true;
 			$scope.leftUser = data.user;
 		}
 	});
-	
+
+	socketio.on('startChat', function(data){
+		console.log(data);
+		$scope.inviteScreen = false;
+		
+		if(data.boolean && data.id == id) {
+			$scope.enterMsgWindow = true;
+			$scope.noMsgWindow = true;
+
+			if($scope.name === data.users[0]) {
+				$scope.otherPerson = data.users[1];
+
+			}
+			else {
+				$scope.otherPerson = data.users[0];
+			}
+		}
+	});
+
+	socketio.on('receive', function(data){
+		$scope.chatScreenWindow = true;
+		$scope.noMsgWindow = false;
+		$scope.leftUserWindow = false;
+
+	});
+
 }]);
 
 function isValid(thatemail) {
