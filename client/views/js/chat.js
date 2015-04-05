@@ -47,6 +47,7 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', fu
 	$scope.name = '';
 	$scope.email = '';
 	$scope.lovelyChat = '';
+	$scope.chats = [];
 	var img = '';
 	$scope.validName = function() {
 		return (!($scope.name.length > 1));
@@ -61,6 +62,7 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', fu
 			// Send the message to the other person in the chat
 			$scope.chatScreenWindow = true;
 			$scope.noMsgWindow = false;
+			updateChat($scope.lovelyChat, $scope.name, img, "me");
 			socketio.emit('msg', {msg: $scope.lovelyChat, user: $scope.name, img: img});
 		} 
 		$scope.lovelyChat = '';
@@ -149,8 +151,19 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', fu
 		$scope.chatScreenWindow = true;
 		$scope.noMsgWindow = false;
 		$scope.leftUserWindow = false;
-
+		console.log(data);
+		updateChat(data.msg, data.user, data.img, "you");
 	});
+
+	updateChat = function(msg, name, img, styleClass) {
+		var chat = {};
+		chat.styleClassName = styleClass;
+		chat.imgSrc = img;
+		chat.user = name;
+		chat.msg = msg;
+		console.log($scope.chats);
+		$scope.chats.push(chat);
+	}
 
 }]);
 

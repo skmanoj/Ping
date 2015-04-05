@@ -90,7 +90,15 @@
 			<!-- chat screen -->
 			<div ng-show="chatScreenWindow" class="chatscreen">
 				<ul class="chats">
-					<!-- The chat messages will go here -->
+					<li ng-repeat="chat in chats" ng-class="chat.styleClassName">
+						<div class="image">
+							<img ng-src="chat.imgSrc"/>
+							<b>{{chat.user}}</b>
+							<!--
+							<i class="timesent">{{chat.currentTime}}</i> -->
+						</div>
+						<p>{{chat.msg}}</p>
+					</li>
 				</ul>
 			</div>
 		</section>
