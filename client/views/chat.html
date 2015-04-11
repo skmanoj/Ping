@@ -6,12 +6,14 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Chatroom...</title>
-		<link href="/css/bootstrap.min.css" rel="stylesheet"></link>
 		<link href="/localcss/chat.css" rel="stylesheet"></link>
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans Condensed:300italic,300,700" rel="stylesheet" type="text/css">
 	</head>
 	<body ng-controller="BasicChatController">
 		<header class="banner">
+			<h1 class="bannertext">
+				Ping Chatroom...!
+			</h1>
 		</header>
 
 		<section class="section">
@@ -22,10 +24,10 @@
 					<br/>
 
 					<form class="loginForm">
-						<input type="text" id="yourName" placeholder="Your nick name" ng-model="name"/><br/>
-						<h5 ng-show="validName()">*invalid username</h5><br/>
-						<input type="text" id="yourEmail" placeholder="Your email address" ng-model="email"/><br/>
-						<h5 ng-show="validEmail()">*invalid email</h5><br/>
+						<input type="text" id="yourName" placeholder="Your nick name" ng-model="name"/> <br/>
+						<h6 ng-show="validName()">*invalid name</h6> <br/>
+						<input type="text" id="yourEmail" placeholder="Your email address" ng-model="email"/> <br/>
+						<h6 ng-show="validEmail()">*invalid email</h6> <br/>
 						<input type="submit" id="yourEnter" value="ENTER" ng-click="update()"/>
 					</form>
 				</div>
@@ -51,9 +53,9 @@
 
 					<form class="loginForm">
 						<input type="text" id="hisName" placeholder="Your nick name" ng-model="name"/><br/>
-						<h5 ng-show="validName()">*invalid username</h5><br/>
+						<h6 ng-show="validName()">*invalid username</h6><br/>
 						<input type="text" id="hisEmail" placeholder="Your email address" ng-model="email"/><br/>
-						<h5 ng-show="validEmail()">*invalid email</h5><br/>
+						<h6 ng-show="validEmail()">*invalid email</h6><br/>
 						<input type="submit" id="hisEnter" value="CHAT" ng-click="updateUser()"/>
 					</form>
 				</div>
@@ -92,7 +94,7 @@
 				<ul class="chats">
 					<li ng-repeat="chat in chats" ng-class="chat.styleClassName">
 						<div class="image">
-							<img ng-src="chat.imgSrc"/>
+							<img ng-src="{{chat.imgSrc}}"/>
 							<b>{{chat.user}}</b>
 							<!--
 							<i class="timesent">{{chat.currentTime}}</i> -->
@@ -106,7 +108,7 @@
 		<!-- chat enter box -->
 		<footer ng-show="enterMsgWindow">
 			<form id="chatform">
-				<textarea id="message" placeholder="Write something.." ng-model="lovelyChat"></textarea>
+				<input type="text" id="message" placeholder="Write something.." ng-model="lovelyChat"/>
 				<input type="submit" id="submit" value="SEND" ng-click="sendLovelyChat()"/>
 			</form>
 		</footer>

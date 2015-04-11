@@ -51,8 +51,6 @@ http://localhost:3000/
  - Use grunt to automate the tasks
  - Develop capability for audio and video conferencing
  - Write UnitTests
- 
- ** 
 
 [node.js]:http://nodejs.org
 [socket.io]:http://socket.io/

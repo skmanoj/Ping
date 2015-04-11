@@ -31,7 +31,7 @@ chatApp.factory('socketio', ['$rootScope', function ($rootScope) {
  *  Controllers
 */
 
-chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', function($scope, socketio, $location) {
+chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$anchorScroll', function($scope, socketio, $location, $anchorScroll) {
 	// variables which hold the data for each person
 
 	$scope.inviteScreen = false;
