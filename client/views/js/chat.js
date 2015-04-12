@@ -27,11 +27,13 @@ chatApp.factory('socketio', ['$rootScope', function ($rootScope) {
     };
 }]);
 
+
 /*
  *  Controllers
 */
 
-chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$anchorScroll', function($scope, socketio, $location, $anchorScroll) {
+chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$anchorScroll', 
+	function($scope, socketio, $location, $anchorScroll) {
 	// variables which hold the data for each person
 
 	$scope.inviteScreen = false;
@@ -63,6 +65,10 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 			$scope.chatScreenWindow = true;
 			$scope.noMsgWindow = false;
 			updateChat($scope.lovelyChat, $scope.name, img, "me");
+			$location.hash('bottom');
+ 
+      // call $anchorScroll()
+      		$anchorScroll();
 			socketio.emit('msg', {msg: $scope.lovelyChat, user: $scope.name, img: img});
 		} 
 		$scope.lovelyChat = '';
@@ -153,6 +159,11 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 		$scope.leftUserWindow = false;
 		console.log(data);
 		updateChat(data.msg, data.user, data.img, "you");
+		$location.hash('bottom');
+ 
+      // call $anchorScroll()
+      	$anchorScroll();
+
 	});
 
 	updateChat = function(msg, name, img, styleClass) {
