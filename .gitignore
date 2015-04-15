@@ -1,9 +1,4 @@
-.DS_Store
-.nodemonignore
-.sass-cache/
+/node_modules
 npm-debug.log
-node_modules/
-public/lib
-app/tests/coverage/
-.bower-*/
-.idea/
+.DS_Store
+/*.env
