@@ -17,7 +17,7 @@
 		</header>
 
 		<section class="section">
-			<div ng-show = "connectScreen" class="connected">
+			<div ng-show = "connectScreen" class="connected" ng-cloak>
 				<img src="/img/unnamed.jpg" id="creatorImage" />
 				<div class="infoConnected">
 					<h2>Who are you?</h2>
@@ -34,9 +34,9 @@
 			</div>
 
 			<!-- invitation screen -->
-			<div ng-show="inviteScreen" class="invite-textfield">
+			<div ng-show="inviteScreen" class="invite-textfield" ng-cloak>
 
-				<h2>Oops, there are no other people in this chat!</h2>
+				<h2>There are no other people in this chat!</h2>
 				<h5>Invite a friend by sending them this URL</h5>
 
 				<div class="link">
@@ -45,7 +45,7 @@
 			</div>
 
 			<!-- chat screen for second person -->
-			<div ng-show="personInside" class="personinside">
+			<div ng-show="personInside" class="personinside" ng-cloak>
 				<img src="/img/unnamed.jpg" id="ownerImage" />
 				<div class="infoInside">
 					<h2>Chat with {{firstUser}}</h2>
@@ -62,7 +62,7 @@
 			</div>
 
 			<!-- Too many people -->
-			<div ng-show="tooManyPeople" class="toomanypeople">
+			<div ng-show="tooManyPeople" class="toomanypeople" ng-cloak>
 
 				<h2>Oops, you can not join this chat!</h2>
 				<h5>There are already two people in it. Would you like to create a <a title="New Room" href="/create" id="room">new room</a>?</h5>
@@ -71,7 +71,7 @@
 
 			<!--User left -->
 
-			<div ng-show="leftUserWindow" class="left">
+			<div ng-show="leftUserWindow" class="left" ng-cloak>
 				<img src="/img/unnamed.jpg" id="leftImage" />
 				<div class="info">
 					<h2> {{leftUser}} has left this chat.</h2>
@@ -80,7 +80,7 @@
 			</div>
 
 			<!-- No messages yet -->
-			<div ng-show="noMsgWindow" class="nomessages">
+			<div ng-show="noMsgWindow" class="nomessages" ng-cloak>
 				<img src="/img/unnamed.jpg" id="noMessagesImage" />
 				<div class="info">
 					<h2>You are chatting with {{otherPerson}}.</h2>
@@ -90,7 +90,7 @@
 			</div>
 
 			<!-- chat screen -->
-			<div ng-show="chatScreenWindow" class="chatscreen">
+			<div ng-show="chatScreenWindow" class="chatscreen" ng-cloak>
 				<ul class="chats">
 					<li ng-repeat="chat in chats" ng-class="chat.styleClassName">
 						<div class="image">
@@ -107,9 +107,11 @@
 		</section>
 
 		<!-- chat enter box -->
-		<footer ng-show="enterMsgWindow">
+		<footer ng-show="enterMsgWindow" ng-cloak>
+			<h6 id="typing">{{whoIsTyping}}</h6>
 			<form id="chatform">
-				<input type="text" id="message" placeholder="Write something.." ng-model="lovelyChat"/>
+				<input type="text" id="message" placeholder="Write something.." ng-model="lovelyChat" 
+					   ng-change="typing()"/>
 				<input type="submit" id="submit" value="SEND" ng-click="sendLovelyChat()"/>
 			</form>
 		</footer>

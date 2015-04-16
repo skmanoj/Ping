@@ -1,5 +1,11 @@
+/*
+ *	Main Module
+ */
 var chatApp = angular.module('chatApp',[]);
 
+/*
+ *   Factories	
+ */
 chatApp.factory('socketio', ['$rootScope', function ($rootScope) {
 
     'use strict';
@@ -44,6 +50,7 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 	$scope.noMsgWindow = false;
 	$scope.chatScreenWindow = false;
 	$scope.enterMsgWindow = false;
+	$scope.whoIsTyping = '';
 	$scope.link = $location.absUrl();
 
 	$scope.name = '';
@@ -51,6 +58,11 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 	$scope.lovelyChat = '';
 	$scope.chats = [];
 	var img = '';
+
+	$scope.typing = function() {
+		socketio.emit('type', {msg: $scope.lovelyChat, user: $scope.name, img: img});
+	}
+
 	$scope.validName = function() {
 		return (!($scope.name.length > 1));
 	}
@@ -158,12 +170,20 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 		$scope.noMsgWindow = false;
 		$scope.leftUserWindow = false;
 		console.log(data);
+		$scope.whoIsTyping = '';
 		updateChat(data.msg, data.user, data.img, "you");
 		$location.hash('bottom');
  
-      // call $anchorScroll()
       	$anchorScroll();
 
+	});
+
+	socketio.on('receiveTyping', function(data){
+		if(data.msg) {
+			$scope.whoIsTyping = data.user + " is typing...";
+		} else {
+			$scope.whoIsTyping = '';
+		}
 	});
 
 	updateChat = function(msg, name, img, styleClass) {

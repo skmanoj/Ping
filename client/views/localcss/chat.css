@@ -577,9 +577,14 @@ footer {
 	background-color: white;
 }
 
+#typing {
+	padding-left: 300px;
+	color: inherit;
+}
+
 #message {
 	width: 550px;
-	height: 80px;
+	height: 60px;
 	display: block;
 	float:left;
 	margin: 0 auto;

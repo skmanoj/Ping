@@ -96,6 +96,9 @@ module.exports = function(io) {
 			socket.leave(socket.room);
 		});
 
+		socket.on("type", function(data) {
+			socket.broadcast.to(socket.room).emit('receiveTyping', {msg: data.msg, user: data.user, img: data.img});
+		});
 
 		// Handle the sending of messages
 		socket.on('msg', function(data){
