@@ -6,7 +6,7 @@ module.exports = {
 	init: function(app) {
 		app.use('/css', express.static(__dirname + '/public/lib/bootstrap/dist/css'));
 		app.use('/localcss', express.static(__dirname + '/client/views/localcss'));
-		app.use('/localjs', express.static(__dirname + '/client/views/js'));
+		app.use('/localjs', express.static(__dirname + '/client/js'));
 		app.use('/img', express.static(__dirname + '/public/img'));
 		app.use('/lib', express.static(__dirname + '/public/lib'));
 		app.use('/bootstrapjs', express.static(__dirname + '/public/lib/bootstrap/dist/js'));
