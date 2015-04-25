@@ -1,6 +1,5 @@
-var cluster = require('cluster');
-var http = require('http');
-var numCPUs = require('os').cpus().length;
+var cluster = require('cluster'),
+    numCPUs = require('os').cpus().length;
 
 if (cluster.isMaster) {
   	
@@ -10,7 +9,7 @@ if (cluster.isMaster) {
   	}
 
   	cluster.on('exit', function(worker, code, signal) {
-    console.log('worker ' + worker.process.pid + ' died');
+    	console.log('worker ' + worker.process.pid + ' died');
   	});
 } else {
 	var express = require('express'),
@@ -19,7 +18,7 @@ if (cluster.isMaster) {
 	    config	= require('./config');
 
 	var io = require('socket.io').listen(app.listen(config.port, function() {
-	console.log('connected to Ping chat server at port: ', config.port);
+		console.log('connected to Ping chat server at port: ', config.port);
 	}));
 
 	config.init(app);
