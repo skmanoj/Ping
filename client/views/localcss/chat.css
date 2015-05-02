@@ -36,6 +36,12 @@ body {
   flex-direction: column;
 }
 
+#noMessagesImage {
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
 .homebanner {
 	height: 120px;
 	background-color: #3c4446;
@@ -432,11 +438,7 @@ body {
 	margin-bottom: 100px;
 }
 
-#noMessagesImage {
-	float: left;
-	margin-top: 10px;
-	margin-left: 10px;
-}
+
 
 #img {
 	float: left;

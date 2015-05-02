@@ -41,37 +41,59 @@
 		</nav>
 
 		<section class="section">
-			<div ng-show = "connectScreen" class="connected" ng-cloak>
-				<img src="/img/unnamed.jpg" id="creatorImage" />
-				<div class="infoConnected">
-					<h2>Who are you?</h2>
-					<br/>
 
-					<form class="loginForm">
-						<input type="text" id="yourName" placeholder="Your nick name" ng-model="name"/> <br/>
-						<h6 ng-show="validName()">*invalid name</h6> <br/>
-						<input type="text" id="yourEmail" placeholder="Your email address" ng-model="email"/> <br/>
-						<h6 ng-show="validEmail()">*invalid email</h6> <br/>
-						<input type="submit" id="yourEnter" value="ENTER" ng-click="update()"/>
-					</form>
-				</div>
+			<div class="container vertical-center img-rounded" ng-show = "connectScreen" ng-cloak>
+				<div class="panel panel-default">
+					<div class="panel-heading">Register</div>
+					<div class="panel-body">
+						<div class="row">	
+							<div class="col-lg-3">
+							 	<img src="/img/unnamed.jpg" class="img-circle img-responsive" id="noMessagesImage"/>
+							</div>
+							<div class="col-lg-8">
+								<form role="form">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Your nick name" ng-model="name"/>
+										<p ng-show="validName()" class="h5 help-block">invalid name</p>
+									</div>
+									<div class="form-group">
+										<input type="email" class="form-control" placeholder="Your email" ng-model="email"/>
+										<p ng-show="validEmail()" class="h5 help-block">invalid email</p>
+									</div>							
+									<button type="submit" class="btn btn-default" ng-click="update()">Submit</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>	
 			</div>
 
 			<!-- chat screen for second person -->
-			<div ng-show="personInside" class="personinside" ng-cloak>
-				<img src="/img/unnamed.jpg" id="ownerImage" />
-				<div class="infoInside">
-					<h2>Chat with {{firstUser}}</h2>
-					<br/>
 
-					<form class="loginForm">
-						<input type="text" id="hisName" placeholder="Your nick name" ng-model="name"/><br/>
-						<h6 ng-show="validName()">*invalid username</h6><br/>
-						<input type="text" id="hisEmail" placeholder="Your email address" ng-model="email"/><br/>
-						<h6 ng-show="validEmail()">*invalid email</h6><br/>
-						<input type="submit" id="hisEnter" value="CHAT" ng-click="updateUser()"/>
-					</form>
-				</div>
+			<div class="container vertical-center img-rounded" ng-show = "personInside" ng-cloak>
+				<div class="panel panel-default">
+					<div class="panel-heading">Chat with {{firstUser}}</div>
+					<div class="panel-body">
+						<div class="row">	
+							<div class="col-lg-3">
+							 	<img src="/img/unnamed.jpg" class="img-circle img-responsive" id="noMessagesImage"/>
+							</div>
+							<div class="col-lg-8">
+								<form role="form">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Your nick name" ng-model="name"/>
+										<p ng-show="validName()" class="h5 help-block">invalid name</p>
+									</div>
+									<div class="form-group">
+										<input type="email" class="form-control" placeholder="Your email" ng-model="email"/>
+										<p ng-show="validEmail()" class="h5 help-block">invalid email</p>
+									</div>							
+									<button type="submit" class="btn btn-default" ng-click="updateUser()">Submit</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>	
 			</div>
 
 

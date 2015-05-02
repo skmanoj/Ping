@@ -28,7 +28,7 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 	}
 
 	$scope.validName = function() {
-		return (!($scope.name.length > 1));
+		return (!($scope.name.length > 1 && $scope.name.length < 10));
 	}
 
 	$scope.validEmail = function() {
@@ -81,6 +81,7 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 			console.log(data);
 			$scope.personInside = true;
 			$scope.firstUser = data.user;
+			$scope.firstUserImage = data.avatar;
 
 			$scope.updateUser = function() {
 				if(!($scope.validName()) && !($scope.validEmail())) {
