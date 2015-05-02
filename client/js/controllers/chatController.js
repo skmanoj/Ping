@@ -107,6 +107,7 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 			$scope.noMsgWindow = false;
 			$scope.chatScreenWindow = false;
 			$scope.leftUserWindow = true;
+			$scope.leftUserImage = data.avatar;
 			$scope.leftUser = data.user;
 		}
 	});
@@ -121,10 +122,11 @@ chatApp.controller('BasicChatController', ['$scope', 'socketio', '$location', '$
 
 			if($scope.name === data.users[0]) {
 				$scope.otherPerson = data.users[1];
-
+				$scope.otherPersonImage = data.avatars[1];
 			}
 			else {
 				$scope.otherPerson = data.users[0];
+				$scope.otherPersonImage = data.avatars[0];
 			}
 		}
 	});
