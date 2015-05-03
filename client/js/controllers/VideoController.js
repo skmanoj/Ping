@@ -1,6 +1,13 @@
-chatApp.controller('VideoController', ['$scope',
-	function($scope) {
-		var constraints = {video: true};
+/*
+ *  Video Controller 
+ */
+
+chatApp.controller('VideoController', ['$scope', 'socketio',
+	function($scope, socketio) {
+		var constraints = {
+			audio: true,
+			video: true
+		};
 
 		$scope.videoConfInit = function() {
 			navigator.getUserMedia = navigator.getUserMedia ||
