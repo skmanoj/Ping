@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="/localjs/chatAppMain.js"></script>
 		<script type="text/javascript" src="/localjs/factories/socketFactory.js"></script>
 		<script type="text/javascript" src="/localjs/controllers/chatController.js"></script>
+		<script type="text/javascript" src="/localjs/controllers/VideoController.js"></script>
 
 		<!-- Header implemented using bootstrap -->
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -97,8 +98,8 @@
 
 
 			<!-- invitation screen -->
-			<div ng-show="inviteScreen" class="col-lg-12 vertical-center img-rounded" ng-cloak>
-				<div class="panel panel-default">
+			<div ng-show="inviteScreen" class="container vertical-center img-rounded" ng-cloak>
+				<div class="panel panel-default col-xs-12 col-md-6">
 					<div class="panel-heading">
     					<h3 class="panel-title">Empty Room!!!</h3>
   					</div>
@@ -110,8 +111,8 @@
 			</div>
 
 			<!-- Too many people -->
-			<div ng-show="tooManyPeople" class="col-lg-12 vertical-center img-rounded" ng-cloak>
-				<div class="panel panel-default">
+			<div ng-show="tooManyPeople" class="container vertical-center img-rounded" ng-cloak>
+				<div class="panel panel-default col-xs-12 col-md-6">
 					<div class="panel-heading">
     					<h3 class="panel-title">Room Filled!!!</h3>
   					</div>
@@ -157,19 +158,42 @@
 			</div>
 
 			<!-- chat screen -->
-			<div ng-show="chatScreenWindow" class="chatscreen" ng-cloak>
-				<ul class="chats">
-					<li ng-repeat="chat in chats" ng-class="chat.styleClassName">
-						<div class="image">
-							<img ng-src="{{chat.imgSrc}}"/>
-							<b>{{chat.user}}</b>
-							<!--
-							<i class="timesent">{{chat.currentTime}}</i> -->
+			<div ng-show="chatScreenWindow" class="container">
+				<div class="row">
+					<div class="chatscreen pre-scrollable col-xs-6" ng-cloak>
+						<ul class="chats">
+							<li ng-repeat="chat in chats" ng-class="chat.styleClassName">
+								<div class="image">
+									<img ng-src="{{chat.imgSrc}}"/>
+									<b>{{chat.user}}</b>
+									<!--
+									<i class="timesent">{{chat.currentTime}}</i> -->
+								</div>
+								<p>{{chat.msg}}</p>
+							</li>
+						</ul>
+						<a id="bottom"></a>
+					</div>
+					<div class="col-xs-6 videoscreen" ng-controller="VideoController">
+						<video class="col-xs-12" height="400px" padding-top="100px" id="thiervideo" autoplay>
+  							<source src="movie.mp4" type="video/mp4">
+  							<source src="movie.ogg" type="video/ogg">
+							Your browser does not support the video tag.
+						</video>
+						<div class="row">
+							<div class="col-xs-4">
+								<button type="submit" class="btn btn-default" ng-click="videoConfInit()">Start Video Chat</button>
+							</div>
+							<div class="col-xs-8">
+								<video class="col-xs-12" height="100px" padding-bottom="20px" id="myvideo" autoplay>
+									<source src="movie.mp4" type="video/mp4">
+  									<source src="movie.ogg" type="video/ogg">
+									Your browser does not support the video tag.
+								</video>
+							</div>	
 						</div>
-						<p>{{chat.msg}}</p>
-					</li>
-				</ul>
-				<a id="bottom"></a> 
+					</div>
+				</div>
 			</div>
 
 			<!--Chat box -->
@@ -178,7 +202,7 @@
 					<div class="row"> 
 						<br/>
 						<form role='chatForm'>
-							<div class="form-group col-xs-6">
+							<div class="form-group col-xs-4">
 								<input type="text" class="form-control" id="chatMessage" placeholder="Type Type..." ng-model="lovelyChat" ng-change="typing()"/>
 								<p class="h6 help-block">{{whoIsTyping}}</p>
 							</div>
