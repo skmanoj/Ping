@@ -4,6 +4,12 @@
 
 chatApp.controller('VideoController', ['$scope', 'socketio',
 	function($scope, socketio) {
+		
+		var isInitiator = false;
+		var isStarted = false;
+		var isChannelReady = false;
+		var localVideoStream;
+		var remoteVideoStream;
 		$scope.callOrAnswer = 'Call';
 
 		var constraints = {
