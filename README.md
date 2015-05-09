@@ -3,6 +3,7 @@
 Ping is a [node.js] based chat server, and it has the capabilities like:
 
   - Creating private chat rooms
+  - Video conferencing
   - Display pic of the user is shown using gravatar associated with user's mail id
 
 ### Tech
@@ -49,7 +50,7 @@ http://localhost:3000/
 ### Todo's
 
  - Use grunt to automate the tasks
- - Develop capability for audio and video conferencing
+ - Support for browsers like IE and safari
  - Write UnitTests
 
 [node.js]:http://nodejs.org
