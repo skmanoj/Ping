@@ -1,3 +1,4 @@
+//socoket io functionality on server side
 var gravatar = require('gravatar');
 
 module.exports = function(io) {

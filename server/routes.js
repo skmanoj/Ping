@@ -1,9 +1,9 @@
 var serverio = require('./serverio');
 
-module.exports = function(app, io) {
+module.exports = function(app, io, rootDir) {
 
 	app.get('/', function(req, res) {
-		res.sendFile(__dirname + '/client/views/home.html');
+		res.sendFile(rootDir + '/client/views/home.html');
 	});
 
 	app.get('/create', function(req,res){
@@ -16,7 +16,7 @@ module.exports = function(app, io) {
 	});
 
 	app.get('/chat/:id', function(req,res){
-		res.sendFile(__dirname + '/client/views/chat.html');
+		res.sendFile(rootDir + '/client/views/chat.html');
 	});
 
 	serverio(io);
@@ -33,13 +33,13 @@ module.exports = function(app, io) {
 		console.error(err.stack);
 
 		// Error page
-		res.status(500).sendFile(__dirname + '/client/views/errors.html');
+		res.status(500).sendFile(rootDir + '/client/views/errors.html');
 
 	});
 
 	// Assume 404 since no middleware responded
 	app.use(function(req, res) {
-		res.status(404).sendFile(__dirname + '/client/views/errors.html');
+		res.status(404).sendFile(rootDir + '/client/views/errors.html');
 
 	});
 }
