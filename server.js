@@ -1,4 +1,5 @@
 //server initialization
+//export NODE_ENV=production ... run this to set environment to production in osx
 var express = require('express'),
     app     = express(),
     route	= require('./server/routes'),

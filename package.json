@@ -4,7 +4,7 @@
   "description": "Node based chat server",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "echo $NODE_ENV; if [ $NODE_ENV == 'production' ]; then node server.js; else nodemon server.js; fi",
     "postinstall": "bower cache clean && bower install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
